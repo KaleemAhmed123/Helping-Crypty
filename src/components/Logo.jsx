@@ -7,12 +7,12 @@ const Logo = () => {
     <Link
       to="/"
       className="
-     absolute top-[1.5rem] left-[1.5rem] [text-decoration:none]
+     absolute top-[1.5rem] left-[1.5rem]
 text-lg text-cyan flex items-center
      "
     >
       <img src={logoSvg} alt="CryptoBucks" />
-      <span>CRYPTNER</span>
+      <span>$creener</span>
     </Link>
   );
 };
