@@ -1,7 +1,12 @@
 import React from "react";
+import TableComponent from "./TableComponent";
 
 const CryptoDetails = () => {
-  return <div>CryptoDetails</div>;
+  return (
+    <div>
+      <TableComponent />
+    </div>
+  );
 };
 
 export default CryptoDetails;
