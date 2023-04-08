@@ -4,23 +4,21 @@ import { Link } from "react-router-dom";
 
 const SaveBtn = ({ data }) => {
   // const { saveCoin, allCoins, removeCoin } = useContext(StorageContext);
-
   // const handleClick = (e) => {
   //   e.preventDefault();
   //   saveCoin(data.id);
-
   //   if (allCoins.includes(data.id)) {
   //     removeCoin(data.id);
   //   } else {
   //     saveCoin(data.id);
-  console.log(data);
+  // console.log(data);
   //   }
 };
 
 const TableComponent = () => {
-  // const { cryptoData } = useContext(CryptoContext);
-  const { test } = useContext(CryptoContext);
-  console.log(test);
+  const { cryptoData } = useContext(CryptoContext);
+  // const { test } = useContext(CryptoContext);
+  // console.log(cryptoData);
 
   return (
     <>
@@ -48,8 +46,8 @@ const TableComponent = () => {
                 return (
                   <tr
                     key={data.id}
-                    className="text-center text-base border-b border-gray-100 
-            hover:bg-gray-200 last:border-b-0
+                    className="text-center text-base border-b border-gray-100 transition-all delay-100
+            hover:bg-gray-200 hover:scale-[1.02] last:border-b-0
             "
                   >
                     {/* has three sections btn, logo, shortName */}
@@ -76,7 +74,7 @@ const TableComponent = () => {
                       {/* for currency format */}
                       {new Intl.NumberFormat("en-IN", {
                         style: "currency",
-                        currency: currency,
+                        currency: "inr",
                       }).format(data.current_price)}
                     </td>
                     <td className="py-4">{data.total_volume}</td>
@@ -121,7 +119,9 @@ const TableComponent = () => {
               })}
             </tbody>
           </table>
-        ) : null}
+        ) : (
+          <h1>API Limit Sucks !</h1>
+        )}
       </div>
     </>
   );
