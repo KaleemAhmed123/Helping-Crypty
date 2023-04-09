@@ -6,7 +6,7 @@ import resetIcon from "../assets/reset.svg";
 import { CryptoContext } from "../context/CryptoContext";
 
 const Filters = () => {
-  let { setCurrency } = useContext(CryptoContext);
+  let { setCurrency, setSortBy, resetFunction } = useContext(CryptoContext);
   const currencyRef = useRef(null);
 
   const handleCurrencySubmit = (e) => {
@@ -16,6 +16,12 @@ const Filters = () => {
     currencyRef.current.value = "";
   };
 
+  const handleSort = (e) => {
+    e.preventDefault();
+    let val = e.target.value;
+    setSortBy(val);
+  };
+
   return (
     <div
       className="w-full h-12 border-2 border-gray-100 rounded-lg
@@ -23,7 +29,6 @@ const Filters = () => {
     "
     >
       <Search />
-      {/* currency customization */}
       <div className="flex mr-7">
         <form
           className="relative flex items-center font-nunito
@@ -37,7 +42,7 @@ const Filters = () => {
           mr-2 font-bold
           "
           >
-            currency:
+            currency:{" "}
           </label>
           <input
             type="text"
@@ -54,7 +59,44 @@ const Filters = () => {
           </button>
         </form>
 
-        {/* sort by custom */}
+        <label className="relative flex justify-center items-center">
+          <span className="font-bold mr-2">sort by: </span>
+          <select
+            name="sortby"
+            className="rounded bg-gray-200 text-base 
+         pl-2 pr-10 py-0.5 leading-4 capitalize focus:outline-0
+         "
+            onClick={handleSort}
+          >
+            <option value="market_cap_desc">market cap desc</option>
+            <option value="market_cap_asc">market cap asc</option>
+            <option value="volume_desc">volume desc</option>
+            <option value="volume_asc">volume asc</option>
+            <option value="id_desc">id desc</option>
+            <option value="id_asc">id asc</option>
+            <option value="gecko_desc">gecko desc</option>
+            <option value="gecko_asc">gecko asc</option>
+          </select>
+          <img
+            src={selectIcon}
+            alt="submit"
+            className="w-[1rem] h-auto
+         absolute right-1 top-2 pointer-events-none
+         "
+          />
+        </label>
+        <button
+          className="w-[2rem] ml-4 hover:scale-110 transition-all transition-ease
+        relative
+        "
+          onClick={resetFunction}
+        >
+          <img
+            src={resetIcon}
+            alt="reset"
+            className="w-full h-full  fill-cyan text-cyan"
+          />
+        </button>
       </div>
     </div>
   );

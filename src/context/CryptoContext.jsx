@@ -43,6 +43,12 @@ export const CryptoProvider = ({ children }) => {
     }
   };
 
+  // refresh button
+  const resetFunction = () => {
+    setPage(1);
+    setCoinSearch("");
+  };
+
   useLayoutEffect(() => {
     getCryptoData();
   }, [coinSearch, currency, sortBy]);
@@ -63,6 +69,7 @@ export const CryptoProvider = ({ children }) => {
         setSortBy,
 
         getSearchResult,
+        resetFunction,
       }}
     >
       {children}

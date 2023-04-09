@@ -42,7 +42,7 @@ const TableComponent = () => {
             </thead>
 
             <tbody>
-              {cryptoData.map((data) => {
+              {cryptoData?.map((data) => {
                 return (
                   <tr
                     key={data.id}
