@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Pagination from "./Pagination";
 import { CryptoContext } from "../context/CryptoContext";
 import { Link } from "react-router-dom";
 
@@ -120,8 +121,24 @@ const TableComponent = () => {
             </tbody>
           </table>
         ) : (
-          <h1>API Limit Sucks !</h1>
+          <h1 className="min-h-[60vh] text-lg text-red flex items-center justify-center">
+            API Limit Sucks !
+          </h1>
         )}
+      </div>
+      <div className="flex justify-between items-center mt-4 h-[2rem]">
+        <span>
+          Attribution Free- Data Provided By:
+          <a
+            href="http://www.coingecko.com"
+            className="text-cyan"
+            target={"_blank"}
+            rel="noreferrer"
+          >
+            CoinGecko
+          </a>
+        </span>
+        <Pagination />
       </div>
     </>
   );

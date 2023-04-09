@@ -50,7 +50,7 @@ export const CryptoProvider = ({ children }) => {
   // refresh button
   const resetFunction = () => {
     setPage(1);
-    setCoinSearch("");
+    setCoinSearch(""); // clear search issue (1 result)
   };
 
   useLayoutEffect(() => {
