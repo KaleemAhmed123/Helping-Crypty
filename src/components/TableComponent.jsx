@@ -16,7 +16,7 @@ const SaveBtn = ({ data }) => {
 };
 
 const TableComponent = () => {
-  const { cryptoData } = useContext(CryptoContext);
+  const { cryptoData, currency } = useContext(CryptoContext);
   // const { test } = useContext(CryptoContext);
   // console.log(cryptoData);
 
@@ -47,7 +47,7 @@ const TableComponent = () => {
                   <tr
                     key={data.id}
                     className="text-center text-base border-b border-gray-100 transition-all delay-100
-            hover:bg-gray-200 hover:scale-[1.02] last:border-b-0
+            hover:bg-gray-200 last:border-b-0
             "
                   >
                     {/* has three sections btn, logo, shortName */}
@@ -74,7 +74,7 @@ const TableComponent = () => {
                       {/* for currency format */}
                       {new Intl.NumberFormat("en-IN", {
                         style: "currency",
-                        currency: "inr",
+                        currency: currency,
                       }).format(data.current_price)}
                     </td>
                     <td className="py-4">{data.total_volume}</td>

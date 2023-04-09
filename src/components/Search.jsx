@@ -6,7 +6,7 @@ import { CryptoContext } from "../context/CryptoContext";
 // handleSearch is that debounced function
 const SearchInput = ({ handleSearch }) => {
   const [searchText, setSearchText] = useState("");
-  let { searchData, setCoinSearch, setSearchData } = useContext(CryptoContext);
+  let { searchData, setSearchData, setCoinSearch } = useContext(CryptoContext);
 
   let handleInput = (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ const SearchInput = ({ handleSearch }) => {
       {/* opening section */}
       {searchText.length > 0 ? (
         <ul
-          className="absolute top-11 right-0 w-96 h-96 rounded
+          className="absolute top-10 left-3 w-96 h-96 rounded
 overflow-x-hidden py-2 bg-gray-200 bg-opacity-60 
 backdrop-blur-md scrollbar-thin scrollbar-thumb-gray-100 scrollbar-track-gray-200
 "
@@ -68,7 +68,7 @@ backdrop-blur-md scrollbar-thin scrollbar-thumb-gray-100 scrollbar-track-gray-20
                   onClick={() => selectCoin(coin.id)}
                 >
                   <img
-                    className="w-[1.2rem] h-[1.2rem] mx-2"
+                    className="w-[1.3rem] h-[1.3rem] mx-4"
                     src={coin.thumb}
                     alt={coin.name}
                   />
@@ -78,14 +78,17 @@ backdrop-blur-md scrollbar-thin scrollbar-thumb-gray-100 scrollbar-track-gray-20
               );
             })
           ) : (
-            // showing spinner ....
-            <div className="w-full h-full flex justify-center items-center">
+            <div
+              className="w-full h-full flex justify-center items-center
+             "
+            >
               <div
-                className="w-8 h-8 border-4 border-cyan rounded-full
-             border-b-gray-200 animate-spin"
+                className="w-10 h-10 border-4 border-cyan rounded-full
+             border-b-gray-200 animate-spin
+             "
                 role="status"
               />
-              <span className="ml-2">Searching CoinGecho Api...</span>
+              <span className="ml-2">Searching...</span>
             </div>
           )}
         </ul>
