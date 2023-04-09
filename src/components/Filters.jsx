@@ -11,9 +11,8 @@ const Filters = () => {
 
   const handleCurrencySubmit = (e) => {
     e.preventDefault();
-    let val = currencyRef.current.value;
+    let val = e.target.value;
     setCurrency(val);
-    currencyRef.current.value = "";
   };
 
   const handleSort = (e) => {
@@ -44,19 +43,24 @@ const Filters = () => {
           >
             currency:{" "}
           </label>
-          <input
-            type="text"
-            name="currency"
-            ref={currencyRef}
-            placeholder="inr"
-            className="w-16 rounded bg-gray-200 placeholder:text-gray-100
-     pl-2 required outline-0 border border-transparent 
-     focus:border-cyan leading-4
-     "
-          />
-          <button type="submit" className="ml-1 cursor-pointer">
-            <img src={submitIcon} alt="submit" className="w-full h-auto" />
-          </button>
+          <select
+            name="sortby"
+            className="rounded bg-gray-200 text-base 
+         pl-2 pr-10 py-0.5 leading-4 capitalize focus:outline-0
+         "
+            onClick={handleCurrencySubmit}
+          >
+            <option value="usd">USD</option>
+            <option value="eur">EUR</option>
+            <option value="CAD">CAD</option>
+            <option value="AED">AED</option>
+            <option value="inr">INR</option>
+            <option value="AUD">AUD</option>
+            <option value="NGN">NGN</option>
+            <option value="yer">YER</option>
+            <option value="ARS">ARS</option>
+            <option value="pkr">PKR</option>
+          </select>
         </form>
 
         {/* sorting dropmenu */}

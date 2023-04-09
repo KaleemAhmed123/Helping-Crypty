@@ -11,13 +11,17 @@ export const CryptoProvider = ({ children }) => {
 
   const [coinSearch, setCoinSearch] = useState(""); // for table result one
 
-  const [currency, setCurrency] = useState("inr");
+  const [currency, setCurrency] = useState("inr"); // for currency and sorting
   const [sortBy, setSortBy] = useState("market_cap_desc");
+
+  const [page, setPage] = useState(1); // for paginatiom
+  const [totalPages, setTotalPages] = useState(250);
+  const [perPage, setPerPage] = useState(10);
 
   const getCryptoData = async () => {
     try {
       const data = await fetch(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=10&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d&locale=en`
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=${perPage}&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d&locale=en`
       ).then((res) => res.json());
 
       setCryptoData(data);
@@ -51,7 +55,7 @@ export const CryptoProvider = ({ children }) => {
 
   useLayoutEffect(() => {
     getCryptoData();
-  }, [coinSearch, currency, sortBy]);
+  }, [coinSearch, currency, sortBy, page, perPage]);
   // when selected by click get if empty it will render normal 10 result and if given id the will get 1 result
 
   return (
@@ -67,9 +71,14 @@ export const CryptoProvider = ({ children }) => {
         setCurrency,
         sortBy,
         setSortBy,
+        page,
+        setPage,
+        perPage,
+        setPerPage,
+        totalPages,
+        resetFunction,
 
         getSearchResult,
-        resetFunction,
       }}
     >
       {children}
