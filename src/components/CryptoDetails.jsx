@@ -6,6 +6,34 @@ import { useLayoutEffect } from "react";
 import { CryptoContext } from "../context/CryptoContext";
 import Chart from "./Chart";
 
+const HighLowIndicator = ({ currentPrice, high, low }) => {
+  const [green, setGreen] = useState();
+
+  // TODO- might need to remove becz of too many API calls (we have 30 calls a minute)
+  useEffect(() => {
+    let total = high - low;
+    let greenZone = ((high - currentPrice) * 100) / total;
+    setGreen(Math.ceil(greenZone));
+  }, [currentPrice, high, low]);
+
+  return (
+    <>
+      <span
+        className="bg-red h-1.5 rounded-l-lg w-[50%]"
+        style={{ width: `${100 - green}%` }}
+      >
+        &nbsp;
+      </span>
+      <span
+        className="bg-green h-1.5 rounded-r-lg w-[50%]"
+        style={{ width: `${green}%` }}
+      >
+        &nbsp;
+      </span>
+    </>
+  );
+};
+
 const CryptoDetails = () => {
   let { coinId } = useParams();
   let navigate = useNavigate();
@@ -135,14 +163,14 @@ const CryptoDetails = () => {
                 </h2>
               </div>
 
-              {/* That Indicator  */}
-              {/* <div className="flex w-full mt-4 justify-between">
+              {/* That Indicator (comment -to remember Props) */}
+              <div className="flex w-full mt-4 justify-between">
                 <HighLowIndicator
                   currentPrice={data.market_data.current_price[currency]}
                   high={data.market_data.high_24h[currency]}
                   low={data.market_data.low_24h[currency]}
                 />
-              </div> */}
+              </div>
 
               {/* Low 24 and high 24 badge (copyPasted) space between*/}
               <div className="flex w-full mt-4 justify-between">
