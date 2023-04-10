@@ -128,10 +128,10 @@ const TableComponent = () => {
       </div>
       <div className="flex justify-between items-center mt-4 h-[2rem]">
         <span>
-          Attribution Free- Data Provided By:
+          Attribution- Data Provided By:
           <a
             href="http://www.coingecko.com"
-            className="text-cyan"
+            className="text-cyan ml-1"
             target={"_blank"}
             rel="noreferrer"
           >

@@ -10,15 +10,17 @@ export const CryptoProvider = ({ children }) => {
   const [searchData, setSearchData] = useState(); // for search coin Query result
 
   const [coinSearch, setCoinSearch] = useState(""); // for table result one
+  const [coinData, setCoinData] = useState(); // for popup detail
 
   const [currency, setCurrency] = useState("inr"); // for currency and sorting
   const [sortBy, setSortBy] = useState("market_cap_desc");
 
   const [page, setPage] = useState(1); // for paginatiom
-  const [totalPages, setTotalPages] = useState(250);
+  const [totalPages, setTotalPages] = useState(1);
   const [perPage, setPerPage] = useState(10);
 
   const getCryptoData = async () => {
+    setTotalPages(10000);
     try {
       const data = await fetch(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&ids=${coinSearch}&order=${sortBy}&per_page=${perPage}&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d&locale=en`
@@ -42,6 +44,23 @@ export const CryptoProvider = ({ children }) => {
 
       // console.log(data);
       setSearchData(data.coins);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Coin Detail for popUP
+  const getCoinData = async (coinid) => {
+    setCoinData();
+    try {
+      const data = await fetch(
+        `https://api.coingecko.com/api/v3/coins/${coinid}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=true&sparkline=false`
+      )
+        .then((res) => res.json())
+        .then((json) => json);
+
+      // console.log("CoinData", data);
+      setCoinData(data);
     } catch (error) {
       console.log(error);
     }
@@ -76,6 +95,8 @@ export const CryptoProvider = ({ children }) => {
         perPage,
         setPerPage,
         totalPages,
+        coinData,
+        getCoinData,
         resetFunction,
 
         getSearchResult,

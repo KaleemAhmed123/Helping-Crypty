@@ -103,7 +103,7 @@ const Pagination = () => {
             </button>
           </li>
 
-          {page + 1 === TotalNumber || page === TotalNumber ? (
+          {page - 1 === 0 || page === 0 ? (
             <li>
               <button
                 onClick={multiStepPrev}
