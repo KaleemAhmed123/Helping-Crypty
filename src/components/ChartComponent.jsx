@@ -11,6 +11,24 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+function CustomTooltip({ payload, label, active, currency = "usd" }) {
+  if (active && payload && payload.length > 0) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label text-sm text-cyan">{`${label} : ${new Intl.NumberFormat(
+          "en-IN",
+          {
+            style: "currency",
+            currency: currency,
+            minimumFractionDigits: 5,
+          }
+        ).format(payload[0].value)}`}</p>
+      </div>
+    );
+  }
+  return null;
+}
+
 const ChartComponent = ({ data, currency, type }) => {
   return (
     <ResponsiveContainer height={"90%"}>
@@ -25,7 +43,7 @@ const ChartComponent = ({ data, currency, type }) => {
         <XAxis dataKey="date" hide />
         <YAxis dataKey={type} hide domain={["auto", "auto"]} />
         <Tooltip
-          //   content={<CustomTooltip />}
+          content={<CustomTooltip />}
           currency={currency}
           cursor={false}
           wrapperStyle={{ outline: "none" }}
