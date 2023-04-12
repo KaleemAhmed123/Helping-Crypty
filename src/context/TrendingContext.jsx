@@ -13,7 +13,7 @@ export const TrendingProvider = ({ children }) => {
         .then((res) => res.json())
         .then((json) => json);
 
-      // console.log(data);
+      // console.log(data);   .coin rem
       setTrendData(data.coins);
     } catch (error) {
       console.log(error);
@@ -21,6 +21,7 @@ export const TrendingProvider = ({ children }) => {
   };
 
   const refreshButton = () => {
+    // just reload trending data
     getTrendingData();
   };
 
