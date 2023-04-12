@@ -11,6 +11,7 @@ const Chart = ({ id }) => {
   const [days, setDays] = useState(7);
 
   useLayoutEffect(() => {
+    // not in context becz it will be used here only
     const getChartData = async (id) => {
       try {
         const data = await fetch(
