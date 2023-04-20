@@ -23,15 +23,14 @@ const Filters = () => {
 
   return (
     <div
-      className="w-full h-12 border-2 border-gray-100 rounded-lg
-    flex items-center justify-between relative
-    "
+      className="w-full lg:h-12 h-full lg:border-2 rounded-lg border-solid lg:border-gray-100 border-0
+          flex lg:flex-row flex-col lg:items-center lg:justify-between relative align-start justify-between"
     >
       <Search />
-      <div className="flex mr-7">
+      <div className="flex lg:mr-7 justify-between mt-4 lg:mt-0 sm:flex-row flex-col relative">
         <form
           className="relative flex items-center font-nunito
-          mr-12
+          md:mr-12 mr-1
           "
           onSubmit={handleCurrencySubmit}
         >
@@ -64,29 +63,47 @@ const Filters = () => {
         </form>
 
         {/* sorting dropmenu */}
-        <label className="relative flex justify-center items-center">
-          <span className="font-bold mr-2">sort by: </span>
+        <label className="relative flex sm:justify-center justify-start items-center mt-4 sm:mt-0">
+          <span className="mr-2 sm:font-bold font-medium sm:text-base text-sm w-16">
+            sort by:{" "}
+          </span>
           <select
             name="sortby"
-            className="rounded bg-gray-200 text-base 
-         pl-2 pr-10 py-0.5 leading-4 capitalize focus:outline-0
-         "
+            className="rounded bg-gray-200 sm:text-base text-sm pl-2 pr-10 py-1.5 focus:outline-0 text-transparent appearance-none capitalize leading-4
+            w-full sm:w-48
+            "
             onClick={handleSort}
           >
-            <option value="market_cap_desc">market cap desc</option>
-            <option value="market_cap_asc">market cap asc</option>
-            <option value="volume_desc">volume desc</option>
-            <option value="volume_asc">volume asc</option>
-            <option value="id_desc">id desc</option>
-            <option value="id_asc">id asc</option>
-            <option value="gecko_desc">gecko desc</option>
-            <option value="gecko_asc">gecko asc</option>
+            <option className="sm:text-base text-sm" value="market_cap_desc">
+              market cap desc
+            </option>
+            <option className="sm:text-base text-sm" value="market_cap_asc">
+              market cap asc
+            </option>
+            <option className="sm:text-base text-sm" value="volume_desc">
+              volume desc
+            </option>
+            <option className="sm:text-base text-sm" value="volume_asc">
+              volume asc
+            </option>
+            <option className="sm:text-base text-sm" value="id_desc">
+              id desc
+            </option>
+            <option className="sm:text-base text-sm" value="id_asc">
+              id asc
+            </option>
+            <option className="sm:text-base text-sm" value="gecko_desc">
+              gecko desc
+            </option>
+            <option className="sm:text-base text-sm" value="gecko_asc">
+              gecko asc
+            </option>
           </select>
           <img
             src={selectIcon}
             alt="submit"
             className="w-[1rem] h-auto
-         absolute right-1 top-3 pointer-events-none
+         absolute right-6 top-0 pointer-events-none sm:relative
          "
           />
         </label>
@@ -94,7 +111,7 @@ const Filters = () => {
         {/* reset or refresh button */}
         <button
           className="w-[2rem] ml-4 hover:scale-110 transition-all transition-ease
-        relative
+        absolute right-0 top-0 sm:relative
         "
           onClick={resetFunction}
         >
