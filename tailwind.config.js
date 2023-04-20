@@ -8,7 +8,7 @@ export default {
 
     fontSize: {
       base: "16px",
-      sm: "14px",
+      sm: "13px",
       md: "18px",
       lg: "24px",
       xl: "32px",

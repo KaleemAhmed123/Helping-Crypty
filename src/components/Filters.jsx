@@ -36,16 +36,15 @@ const Filters = () => {
         >
           <label
             htmlFor="currency"
-            className="relative flex justify-center items-center
-          mr-2 font-bold
+            className="mr-2 sm:text-base text-sm sm:font-bold font-medium
           "
           >
             currency:{" "}
           </label>
           <select
             name="sortby"
-            className="rounded bg-gray-200 text-base 
-         pl-2 pr-10 py-0.5 leading-4 capitalize focus:outline-0
+            className="rounded bg-gray-200 text-sm 
+         pl-2 sm:pl-1 pr-10 sm:pr-4 py-0.5 leading-4 capitalize focus:outline-0
          "
             onClick={handleCurrencySubmit}
           >
@@ -64,38 +63,38 @@ const Filters = () => {
 
         {/* sorting dropmenu */}
         <label className="relative flex sm:justify-center justify-start items-center mt-4 sm:mt-0">
-          <span className="mr-2 sm:font-bold font-medium sm:text-base text-sm w-16">
+          <span className="mr-1 sm:mr-0 sm:font-bold font-medium sm:text-base text-sm w-16">
             sort by:{" "}
           </span>
           <select
             name="sortby"
-            className="rounded bg-gray-200 sm:text-base text-sm pl-2 pr-10 py-1.5 focus:outline-0 text-transparent appearance-none capitalize leading-4
+            className="rounded bg-gray-200 text-sm pl-2 pr-10 py-1.5 focus:outline-0 text-transparent appearance-none capitalize leading-4
             w-full sm:w-48
             "
             onClick={handleSort}
           >
-            <option className="sm:text-base text-sm" value="market_cap_desc">
+            <option className="text-sm" value="market_cap_desc">
               market cap desc
             </option>
-            <option className="sm:text-base text-sm" value="market_cap_asc">
+            <option className="text-sm" value="market_cap_asc">
               market cap asc
             </option>
-            <option className="sm:text-base text-sm" value="volume_desc">
+            <option className="text-sm" value="volume_desc">
               volume desc
             </option>
-            <option className="sm:text-base text-sm" value="volume_asc">
+            <option className="text-sm" value="volume_asc">
               volume asc
             </option>
-            <option className="sm:text-base text-sm" value="id_desc">
+            <option className="text-sm" value="id_desc">
               id desc
             </option>
-            <option className="sm:text-base text-sm" value="id_asc">
+            <option className="text-sm" value="id_asc">
               id asc
             </option>
-            <option className="sm:text-base text-sm" value="gecko_desc">
+            <option className="text-sm" value="gecko_desc">
               gecko desc
             </option>
-            <option className="sm:text-base text-sm" value="gecko_asc">
+            <option className="text-sm" value="gecko_asc">
               gecko asc
             </option>
           </select>
@@ -103,7 +102,7 @@ const Filters = () => {
             src={selectIcon}
             alt="submit"
             className="w-[1rem] h-auto
-         absolute right-6 top-0 pointer-events-none sm:relative
+         absolute right-6 top-0 pointer-events-none sm:relative sm:top-0
          "
           />
         </label>
@@ -111,7 +110,7 @@ const Filters = () => {
         {/* reset or refresh button */}
         <button
           className="w-[2rem] ml-4 hover:scale-110 transition-all transition-ease
-        absolute right-0 top-0 sm:relative
+        absolute right-0 top-0 sm:relative 
         "
           onClick={resetFunction}
         >
@@ -120,7 +119,7 @@ const Filters = () => {
             width="1em"
             height="1em"
             viewBox="0 0 24 24"
-            className="w-full h-full fill-cyan"
+            className="w-full h-full fill-cyan sm:w-[70%]"
             style={{
               msTransform: "rotate(360deg)",
               WebkitTransform: "rotate(360deg)",

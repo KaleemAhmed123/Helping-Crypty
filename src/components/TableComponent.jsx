@@ -59,98 +59,104 @@ const TableComponent = () => {
       <div className="flex flex-col mt-9 border border-gray-100 rounded ">
         {cryptoData ? (
           <table className="w-full table-auto">
-            <thead
-              className="capitalize text-base text-gray-100 
-            font-medium border-b border-gray-100"
-            >
+            <thead className="capitalize text-base text-gray-100 font-medium border-b border-gray-100 ">
               <tr>
-                <th className="py-1">asset</th>
-                <th className="py-1">name</th>
+                <th className="py-1 ">asset</th>
+                <th className="py-1 sm:table-cell hidden">name</th>
                 <th className="py-1">price</th>
-                <th className="py-1">total volume</th>
-                <th className="py-1">market cap change</th>
+                <th className="py-1 md:table-cell hidden">total volume</th>
+                <th className="py-1 sm:table-cell hidden">market cap change</th>
                 <th className="py-1 lg:table-cell hidden">1H</th>
                 <th className="py-1 lg:table-cell hidden">24H</th>
                 <th className="py-1 lg:table-cell hidden">7D</th>
               </tr>
             </thead>
-
             <tbody>
-              {cryptoData?.map((data) => {
-                return (
-                  <tr
-                    key={data.id}
-                    className="text-center text-base border-b border-gray-100 transition-all delay-100
-            hover:bg-gray-200 last:border-b-0
-            "
-                  >
-                    {/* has three sections btn, logo, shortName */}
-                    <td className="py-4 flex items-center uppercase">
-                      <SaveBtn data={data} />
-                      <img
-                        className="w-[1.2rem] h-[1.2rem] mx-1.5"
-                        src={data.image}
-                        alt={data.name}
-                      />
-                      <span>
+              {cryptoData &&
+                cryptoData.map((data) => {
+                  return (
+                    <tr
+                      key={data.id}
+                      className="text-center text-base sm:text-sm border-b border-gray-100  hover:bg-gray-200 last:border-b-0"
+                    >
+                      {/* first btn,img,name */}
+                      <td className="py-4 uppercase flex items-center">
+                        <SaveBtn data={data} />
+                        <img
+                          src={data.image}
+                          alt={data.id}
+                          className="w-[1.2rem] h-[1.2rem] mx-1.5"
+                        />
                         <Link to={`/${data.id}`} className="cursor-pointer">
                           {data.symbol}
                         </Link>
-                      </span>
-                    </td>
-                    {/* individual items in tds */}
-                    <td className="py-4">
-                      <Link to={`/${data.id}`} className="cursor-pointer">
-                        {data.name}
-                      </Link>
-                    </td>
-                    <td className="py-4">
-                      {/* for currency format */}
-                      {new Intl.NumberFormat("en-IN", {
-                        style: "currency",
-                        currency: currency,
-                      }).format(data.current_price)}
-                    </td>
-                    <td className="py-4">{data.total_volume}</td>
-                    <td className="py-4">
-                      {data.market_cap_change_percentage_24h}%
-                    </td>
-                    <td
-                      className={
-                        data.price_change_percentage_1h_in_currency > 0
-                          ? "text-green py-4 lg:table-cell hidden "
-                          : "text-red py-4  lg:table-cell hidden"
-                      }
-                    >
-                      {Number(
-                        data.price_change_percentage_1h_in_currency
-                      ).toFixed(2)}
-                    </td>
-                    <td
-                      className={
-                        data.price_change_percentage_24h_in_currency > 0
-                          ? "text-green py-4 lg:table-cell hidden"
-                          : "text-red py-4  lg:table-cell hidden"
-                      }
-                    >
-                      {Number(
-                        data.price_change_percentage_24h_in_currency
-                      ).toFixed(2)}
-                    </td>
-                    <td
-                      className={
-                        data.price_change_percentage_7d_in_currency > 0
-                          ? "text-green py-4 lg:table-cell hidden"
-                          : "text-red py-4  lg:table-cell hidden"
-                      }
-                    >
-                      {Number(
-                        data.price_change_percentage_7d_in_currency
-                      ).toFixed(2)}
-                    </td>
-                  </tr>
-                );
-              })}
+                      </td>
+                      {/*  */}
+                      <td className="py-4 cursor-pointer sm:table-cell hidden">
+                        <Link to={`/${data.id}`} className="cursor-pointer">
+                          {data.name}
+                        </Link>
+                      </td>
+                      <td className="py-4 ">
+                        {new Intl.NumberFormat("en-IN", {
+                          style: "currency",
+                          currency: currency,
+                        }).format(data.current_price)}
+                      </td>
+                      <td className="py-4 sm:table-cell hidden">
+                        {data.total_volume}
+                      </td>
+                      <td
+                        className={
+                          data.market_cap_change_percentage_24h < 0
+                            ? "py-4 md:table-cell hidden text-red"
+                            : "py-4 md:table-cell hidden text-green"
+                        }
+                      >
+                        {Number(data.market_cap_change_percentage_24h).toFixed(
+                          2
+                        )}
+                        %
+                      </td>
+                      <td
+                        className={
+                          data.price_change_percentage_1h_in_currency < 0
+                            ? "py-4 lg:table-cell hidden text-red"
+                            : "py-4 lg:table-cell hidden text-green"
+                        }
+                      >
+                        {Number(
+                          data.price_change_percentage_1h_in_currency
+                        ).toFixed(2)}
+                        %
+                      </td>
+                      <td
+                        className={
+                          data.price_change_percentage_24h_in_currency < 0
+                            ? "py-4 lg:table-cell hidden text-red"
+                            : "py-4 lg:table-cell hidden text-green"
+                        }
+                      >
+                        {Number(
+                          data.price_change_percentage_24h_in_currency
+                        ).toFixed(2)}
+                        %
+                      </td>
+                      <td
+                        className={
+                          data.price_change_percentage_7d_in_currency < 0
+                            ? "py-4 lg:table-cell hidden text-red"
+                            : "py-4 lg:table-cell hidden text-green"
+                        }
+                      >
+                        {Number(
+                          data.price_change_percentage_7d_in_currency
+                        ).toFixed(2)}
+                        %
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         ) : (
