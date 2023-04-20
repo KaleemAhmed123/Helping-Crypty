@@ -166,9 +166,9 @@ const TableComponent = () => {
         )}
       </div>
       {/* bottom area */}
-      <div className="flex justify-between items-center mt-4 h-[2rem]">
+      <div className="flex flex-wrap justify-between items-center mt-4 h-[2rem]">
         <span>
-          Attribution- Data Provided By:
+          Attribution:
           <a
             href="http://www.coingecko.com"
             className="text-cyan ml-1"

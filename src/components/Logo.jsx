@@ -11,8 +11,8 @@ const Logo = () => {
 text-lg text-cyan flex items-center
      "
     >
+      <span>Helping_Gecko</span>
       <img src={logoSvg} alt="CryptoBucks" />
-      <span>$creener</span>
     </Link>
   );
 };
