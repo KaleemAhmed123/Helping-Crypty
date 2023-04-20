@@ -9,13 +9,13 @@ import { CryptoContext } from "./CryptoContext";
 
 export const StorageContext = createContext({});
 
-// provider component
 export const StorageProvider = ({ children }) => {
   const [allCoins, setAllCoins] = useState([]);
   const [savedData, setSavedData] = useState();
 
   let { currency, sortBy } = useContext(CryptoContext);
 
+  // local storage {"coins": ["a", "b", ....]} whenever new coin is there spread it not psh
   const saveCoin = (coinId) => {
     let oldCoins = JSON.parse(localStorage.getItem("coins"));
 
@@ -28,15 +28,18 @@ export const StorageProvider = ({ children }) => {
     }
   };
 
+  // filter that out in new array set it
   const removeCoin = (coinId) => {
     let oldCoins = JSON.parse(localStorage.getItem("coins"));
-
-    let newCoin = oldCoins.filter((coin) => coin !== coinId);
+    let newCoin = oldCoins.filter((coin) => {
+      coin !== coinId;
+    });
 
     setAllCoins(newCoin);
     localStorage.setItem("coins", JSON.stringify(newCoin));
   };
 
+  //  fetch coins by join(,)
   const getSavedData = async (totalCoins = allCoins) => {
     try {
       const data = await fetch(
@@ -62,13 +65,16 @@ export const StorageProvider = ({ children }) => {
     if (allCoins.length > 0) {
       getSavedData(allCoins);
     } else {
+      // for refreshing
       setSavedData();
     }
   }, [allCoins]);
 
+  // initial render of saved page
   useLayoutEffect(() => {
     let isThere = JSON.parse(localStorage.getItem("coins")) || false;
 
+    // initializing empty array in localStorage
     if (!isThere) {
       localStorage.setItem("coins", JSON.stringify([]));
     } else {
@@ -84,10 +90,10 @@ export const StorageProvider = ({ children }) => {
   return (
     <StorageContext.Provider
       value={{
-        saveCoin,
         allCoins,
-        removeCoin,
         savedData,
+        saveCoin,
+        removeCoin,
         resetSavedResult,
       }}
     >
